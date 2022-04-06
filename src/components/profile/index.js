@@ -12,6 +12,7 @@ import TuitsAndReplies from "./tuits-and-replies";
 import Media from "./media";
 import MyLikes from "./my-likes";
 import MyDislikes from "./my-dislikes";
+import "./profile.css";
 const Profile = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -29,7 +30,7 @@ const Profile = () => {
   };
   return (
     <div className="ttr-profile">
-      <div className="border border-bottom-0">
+      <div className="ttr-profile-border rounded-top mb-1">
         <div className="mb-5 position-relative">
           <Link
             to="/profile/edit"

@@ -31,7 +31,7 @@ function Navigation() {
               <Link
                 to={link.path}
                 id={link.label}
-                className="text-decoration-none text-black"
+                className="text-decoration-none"
               >
                 <i className={`fa ${link.icon} text-center`}></i>
                 <span className="ttr-label">{link.label}</span>

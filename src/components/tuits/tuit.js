@@ -30,7 +30,10 @@ const Tuit = ({ tuit, deleteTuit, likeTuit, dislikeTuit }) => {
   };
   return (
     // <li onClick={() => navigate(`/tuit/${tuit._id}`)}
-    <li className="p-2 ttr-tuit list-group-item d-flex rounded-0">
+    <li
+      className="p-2 ttr-tuit list-group-item d-flex"
+      style={{ color: "white" }}
+    >
       <div className="pe-2">
         {tuit.postedBy && (
           <img
@@ -42,10 +45,13 @@ const Tuit = ({ tuit, deleteTuit, likeTuit, dislikeTuit }) => {
       <div className="w-100">
         <i
           onClick={() => deleteTuit(tuit._id)}
-          className="fas fa-remove fa-2x fa-pull-right"
+          className="fas fa-remove fa-pull-right"
         ></i>
         <Link to={`/tuit/${tuit._id}`}>
-          <i className="float-end fas fa-circle-ellipsis me-1"></i>
+          <i
+            className="float-end fas fa-circle-ellipsis me-1"
+            style={{ color: "white" }}
+          ></i>
         </Link>
         <h2 className="fs-5">
           {tuit.postedBy && tuit.postedBy.username}@
