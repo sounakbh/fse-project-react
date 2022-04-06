@@ -30,40 +30,134 @@ const Tuit = ({ tuit, deleteTuit, likeTuit, dislikeTuit }) => {
   };
   return (
     // <li onClick={() => navigate(`/tuit/${tuit._id}`)}
-    <li
-      className="p-2 ttr-tuit list-group-item d-flex"
-      style={{ color: "white" }}
-    >
-      <div className="pe-2">
-        {tuit.postedBy && (
-          <img
-            src={`../images/${tuit.postedBy.username}.jpg`}
-            className="ttr-tuit-avatar-logo rounded-circle"
-          />
-        )}
-      </div>
-      <div className="w-100">
-        <i
-          onClick={() => deleteTuit(tuit._id)}
-          className="fas fa-remove fa-pull-right"
-        ></i>
-        <Link to={`/tuit/${tuit._id}`}>
+    <>
+      {/* <li
+        className="p-2 ttr-tuit list-group-item d-flex"
+        style={{ color: "white" }}
+      >
+        <div className="pe-2">
+          {tuit.postedBy && (
+            <img
+              src={`../images/${tuit.postedBy.username}.jpg`}
+              className="ttr-tuit-avatar-logo rounded-circle"
+            />
+          )}
+        </div>
+        <div className="w-100">
           <i
-            className="float-end fas fa-circle-ellipsis me-1"
-            style={{ color: "white" }}
+            onClick={() => deleteTuit(tuit._id)}
+            className="fas fa-remove fa-pull-right"
           ></i>
-        </Link>
-        <h2 className="fs-5">
-          {tuit.postedBy && tuit.postedBy.username}@
-          {tuit.postedBy && tuit.postedBy.username} -
-          <span className="ms-1">{daysOld(tuit)}</span>
-        </h2>
-        {tuit.tuit}
-        {tuit.youtube && <TuitVideo tuit={tuit} />}
-        {tuit.image && <TuitImage tuit={tuit} />}
-        <TuitStats tuit={tuit} likeTuit={likeTuit} dislikeTuit={dislikeTuit} />
-      </div>
-    </li>
+          <Link to={`/tuit/${tuit._id}`}>
+            <i
+              className="float-end fas fa-circle-ellipsis me-1"
+              style={{ color: "white" }}
+            ></i>
+          </Link>
+          <h2 className="fs-5">
+            {tuit.postedBy && tuit.postedBy.username}@
+            {tuit.postedBy && tuit.postedBy.username} -
+            <span className="ms-1">{daysOld(tuit)}</span>
+          </h2>
+          {tuit.tuit}
+          {tuit.youtube && <TuitVideo tuit={tuit} />}
+          {tuit.image && <TuitImage tuit={tuit} />}
+          <TuitStats
+            tuit={tuit}
+            likeTuit={likeTuit}
+            dislikeTuit={dislikeTuit}
+          />
+        </div>
+      </li> */}
+      <li
+        className="list-group-item"
+        style={{
+          borderRadius: "none",
+        }}
+      >
+        <div className="row">
+          <div className="col-1">
+            <img
+              src={tuit.avatarImage}
+              alt=""
+              style={{
+                marginTop: "10px",
+                width: "150%",
+                objectFit: "cover",
+                borderRadius: "50%",
+              }}
+            />
+          </div>
+
+          <div style={{ paddingLeft: "15px", color: "white" }}>
+            <div>
+              <span>
+                <b>{tuit.postedBy?.username}</b> &nbsp;
+                {tuit.verified ? (
+                  <i className="fa fa-check-circle" aria-hidden="true"></i>
+                ) : (
+                  ""
+                )}
+              </span>{" "}
+              &nbsp;
+              <span className="text-muted">@{tuit.postedBy?.username}</span>
+              <i
+                onClick={() => {
+                  console.log(tuit);
+                  return deleteTuit(tuit);
+                }}
+                className="fas fa-remove fa 
+                fa-pull-right"
+              ></i>
+            </div>
+            <div dangerouslySetInnerHTML={{ __html: tuit.tuit }} />
+            <div className="mt-2">
+              {tuit.attachments && tuit.attachments.image ? (
+                <img
+                  src={tuit.attachments.image}
+                  style={{
+                    borderRadius: "15px",
+                    width: "100%",
+                    height: "400px",
+                    objectFit: "cover",
+                  }}
+                  alt=""
+                />
+              ) : (
+                ""
+              )}
+
+              <div className="p-2 d-flex justify-content-between text-muted">
+                <div style={{ color: "#FAF9F6" }}>
+                  <i
+                    className="fa fa-comment"
+                    aria-hidden="true"
+                    style={{ marginRight: "5px" }}
+                  ></i>
+                  {tuit.stats?.replies}
+                </div>
+                <div style={{ color: "#FAF9F6" }}>
+                  <i
+                    className="fa fa-retweet"
+                    aria-hidden="true"
+                    style={{ marginRight: "5px" }}
+                  ></i>
+                  {tuit.stats?.retuits}
+                </div>
+                <TuitStats
+                  tuit={tuit}
+                  likeTuit={likeTuit}
+                  dislikeTuit={dislikeTuit}
+                />
+                <div style={{ color: "#FAF9F6" }}>
+                  <i className="fa fa-upload" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </>
   );
 };
 export default Tuit;
