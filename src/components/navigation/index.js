@@ -6,7 +6,7 @@ function Navigation() {
   const { pathname } = useLocation();
   // console.log(location.pathname);
   const links = [
-    { label: "Tuiter", icon: "fa-square-t", path: "/tuiter" },
+    { label: "", icon: "fa-twitter", path: "/tuiter" },
     { label: "Home", icon: "fa-home", path: "/home" },
     { label: "Explore", icon: "fa-hashtag", path: "/explore" },
     { label: "Notifications", icon: "fa-bell", path: "/notifications" },
@@ -33,7 +33,13 @@ function Navigation() {
                 id={link.label}
                 className="text-decoration-none"
               >
-                <i className={`fa ${link.icon} text-center`}></i>
+                <i
+                  className={
+                    link.label === ""
+                      ? `fab ${link.icon} text-center`
+                      : `fa ${link.icon} text-center`
+                  }
+                ></i>
                 <span className="ttr-label">{link.label}</span>
               </Link>
             </li>
