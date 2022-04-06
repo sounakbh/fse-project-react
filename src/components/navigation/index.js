@@ -25,7 +25,7 @@ function Navigation() {
           return (
             <li
               key={ndx}
-              className={`list-group-item border-0 ttr-font-size-150pc text-nowrap
+              className={`list-group-item border-0 ttr-navigation-front-size-100 text-nowrap
          ${pathname.indexOf(link.path) >= 0 ? "fw-bold" : ""}`}
             >
               <Link
