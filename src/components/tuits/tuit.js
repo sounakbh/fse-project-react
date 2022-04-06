@@ -4,7 +4,13 @@ import TuitImage from "./tuit-image";
 import TuitVideo from "./tuit-video";
 import { useNavigate, Link } from "react-router-dom";
 
-const Tuit = ({ tuit, deleteTuit, likeTuit, dislikeTuit }) => {
+const Tuit = ({
+  tuit,
+  deleteTuit,
+  likeTuit,
+  dislikeTuit,
+  avatarImage = "../../images/day9-toolbox.png",
+}) => {
   const navigate = useNavigate();
   const daysOld = (tuit) => {
     const now = new Date();
@@ -76,20 +82,29 @@ const Tuit = ({ tuit, deleteTuit, likeTuit, dislikeTuit }) => {
         }}
       >
         <div className="row">
-          <div className="col-1">
+          <div
+            className="col-1"
+            style={{
+              margin: 0,
+              padding: 0,
+            }}
+          >
             <img
-              src={tuit.avatarImage}
+              src={avatarImage}
               alt=""
               style={{
                 marginTop: "10px",
-                width: "150%",
+                width: "100%",
                 objectFit: "cover",
                 borderRadius: "50%",
               }}
             />
           </div>
 
-          <div style={{ paddingLeft: "15px", color: "white" }}>
+          <div
+            className="col-11"
+            style={{ paddingLeft: "15px", color: "white" }}
+          >
             <div>
               <span>
                 <b>{tuit.postedBy?.username}</b> &nbsp;
@@ -102,10 +117,7 @@ const Tuit = ({ tuit, deleteTuit, likeTuit, dislikeTuit }) => {
               &nbsp;
               <span className="text-muted">@{tuit.postedBy?.username}</span>
               <i
-                onClick={() => {
-                  console.log(tuit);
-                  return deleteTuit(tuit);
-                }}
+                onClick={() => deleteTuit(tuit._id)}
                 className="fas fa-remove fa 
                 fa-pull-right"
               ></i>
