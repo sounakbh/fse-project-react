@@ -1,11 +1,15 @@
 .ttr-navigation a > i {
-    width: 40px;
-    text-align: center;
+  width: 40px;
+  text-align: center;
 }
 
 .ttr-navigation li,
 .ttr-navigation a {
-    border: none;
-    text-decoration: none;
-    color: black;
+  border: none;
+  text-decoration: none;
+  color: white;
+}
+
+.ttr-navigation-front-size-100 {
+  font-size: 1rem;
 }
