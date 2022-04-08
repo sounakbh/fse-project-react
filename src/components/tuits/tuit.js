@@ -43,7 +43,6 @@ const Tuit = ({
           borderRadius: "none",
         }}
       >
-        {console.log(tuit)}
         <div className="row">
           <div
             className="col-1"
