@@ -4,13 +4,7 @@ import TuitImage from "./tuit-image";
 import TuitVideo from "./tuit-video";
 import { useNavigate, Link } from "react-router-dom";
 
-const Tuit = ({
-  tuit,
-  deleteTuit,
-  likeTuit,
-  dislikeTuit,
-  avatarImage = "../../images/day9-toolbox.png",
-}) => {
+const Tuit = ({ tuit, deleteTuit, likeTuit, dislikeTuit }) => {
   const navigate = useNavigate();
   const daysOld = (tuit) => {
     const now = new Date();
@@ -34,8 +28,19 @@ const Tuit = ({
     }
     return old;
   };
+
+  const embedTagLinks = (tuit) => {
+    const tags = tuit.match(/#[a-z]+/gi);
+    tags?.forEach((tag) => {
+      tuit = tuit.replace(
+        tag,
+        `<a href='/api/tags/${tag.slice(1)}'>${tag}</a>`
+      );
+    });
+    return tuit;
+  };
+
   return (
-    // <li onClick={() => navigate(`/tuit/${tuit._id}`)}
     <>
       <li
         className="list-group-item"
@@ -84,7 +89,9 @@ const Tuit = ({
                 fa-pull-right"
               ></i>
             </div>
-            <div dangerouslySetInnerHTML={{ __html: tuit.tuit }} />
+            <div
+              dangerouslySetInnerHTML={{ __html: embedTagLinks(tuit.tuit) }}
+            />
             <div className="mt-2">
               {tuit.attachments && tuit.attachments.image ? (
                 <img
