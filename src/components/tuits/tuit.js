@@ -37,44 +37,6 @@ const Tuit = ({
   return (
     // <li onClick={() => navigate(`/tuit/${tuit._id}`)}
     <>
-      {/* <li
-        className="p-2 ttr-tuit list-group-item d-flex"
-        style={{ color: "white" }}
-      >
-        <div className="pe-2">
-          {tuit.postedBy && (
-            <img
-              src={`../images/${tuit.postedBy.username}.jpg`}
-              className="ttr-tuit-avatar-logo rounded-circle"
-            />
-          )}
-        </div>
-        <div className="w-100">
-          <i
-            onClick={() => deleteTuit(tuit._id)}
-            className="fas fa-remove fa-pull-right"
-          ></i>
-          <Link to={`/tuit/${tuit._id}`}>
-            <i
-              className="float-end fas fa-circle-ellipsis me-1"
-              style={{ color: "white" }}
-            ></i>
-          </Link>
-          <h2 className="fs-5">
-            {tuit.postedBy && tuit.postedBy.username}@
-            {tuit.postedBy && tuit.postedBy.username} -
-            <span className="ms-1">{daysOld(tuit)}</span>
-          </h2>
-          {tuit.tuit}
-          {tuit.youtube && <TuitVideo tuit={tuit} />}
-          {tuit.image && <TuitImage tuit={tuit} />}
-          <TuitStats
-            tuit={tuit}
-            likeTuit={likeTuit}
-            dislikeTuit={dislikeTuit}
-          />
-        </div>
-      </li> */}
       <li
         className="list-group-item"
         style={{
@@ -90,7 +52,7 @@ const Tuit = ({
             }}
           >
             <img
-              src={avatarImage}
+              src={tuit.postedBy?.profilePhoto}
               alt=""
               style={{
                 marginTop: "10px",

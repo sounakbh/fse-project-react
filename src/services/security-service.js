@@ -1,4 +1,5 @@
 import axios from "axios";
+import imageFiles from "../data/image-files";
 // const BASE_URL = "https://cs5500-01-sp22.herokuapp.com/api";
 // const BASE_URL = "http://localhost:4000/api";
 const BASE_URL = process.env.REACT_APP_BASE_URL
@@ -11,8 +12,15 @@ const api = axios.create({
   withCredentials: true,
 });
 
-export const register = (user) =>
-  api.post(`${SECURITY_API}/register`, user).then((response) => response.data);
+export const register = (user) => {
+  // pick a random profile photo for new user
+  const randomPicture =
+    imageFiles[Math.floor(Math.random() * imageFiles.length)];
+  user.profilePhoto = "../../images/" + randomPicture;
+  return api
+    .post(`${SECURITY_API}/register`, user)
+    .then((response) => response.data);
+};
 
 export const login = (user) =>
   api.post(`${SECURITY_API}/login`, user).then((response) => response.data);
