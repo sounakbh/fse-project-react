@@ -23,13 +23,14 @@ const Explore = () => {
   };
 
   const handleOnFocus = () => {
-    console.log("Focused");
     setIsFocused(true);
   };
 
   const [tuits, setTuits] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
   const [trendingTags, setTrendingTags] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+
   const userId = uid;
   const findTuits = () =>
     service.findAllTuits().then((tuits) => setTuits(tuits));
@@ -44,28 +45,16 @@ const Explore = () => {
   useEffect(async () => {
     const currentTags = await tagsService.findTrendingTags();
     setTrendingTags(currentTags);
-    // setTrendingTags();
-  }, [trendingTags]);
+  }, []);
 
   return (
     <div className="ttr-home">
-      {/* <div>
-        <ReactSearchAutocomplete
-          items={items}
-          onSearch={handleOnSearch}
-          onHover={formatResult}
-          onSelect={handleOnSelect}
-          onFocus={handleOnFocus}
-          // autoFocus
-          formatResult={formatResult}
-        />
-      </div> */}
-
       <div className="row mb-3 position-relative">
         <div className="input-group">
           <input
             className="form-control"
             type="search"
+            defaultValue={inputValue}
             onFocus={handleOnFocus}
             onBlur={() => setIsFocused(false)}
             placeholder="Search Twitter"

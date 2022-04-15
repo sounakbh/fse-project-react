@@ -1,10 +1,15 @@
 import React from "react";
 
 const InputSearchResult = ({ item }) => {
+  const handleClick = (e) => {
+    e.preventDefault();
+    console.log("HEY!");
+  };
   return (
-    <li
+    <button
       href="#"
       className="list-group-item"
+      onClick={handleClick}
       style={{
         textAlign: "center",
         color: "black",
@@ -16,7 +21,7 @@ const InputSearchResult = ({ item }) => {
       }}
     >
       {item.name}
-    </li>
+    </button>
   );
 };
 
