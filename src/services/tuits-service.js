@@ -23,6 +23,7 @@ export const findTuitByUser = (uid) =>
 
 export const createTuit = (uid, tuit) => {
   const splitted = tuit.tuit.match(/#[a-z]+/gi);
+  tuit.tags = splitted;
   return api
     .post(`${USERS_API}/${uid}/tuits`, tuit)
     .then((response) => response.data);
