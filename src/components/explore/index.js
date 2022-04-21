@@ -1,33 +1,20 @@
 import React from "react";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import Tuits from "../tuits";
-import InputSearchResult from "./inputSearchResult";
 import * as service from "../../services/tuits-service";
 import * as tagsService from "../../services/tags-service";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import {
+  InputGroup,
+  Dropdown,
+  DropdownButton,
+  FormControl,
+} from "react-bootstrap";
 
 const Explore = () => {
   const { uid } = useParams();
-
-  const handleOnSearch = (string, results) => {
-    console.log(string, results);
-  };
-
-  const handleOnHover = (result) => {
-    console.log(result);
-  };
-
-  const handleOnSelect = (item) => {
-    console.log("Onselect fired", item);
-  };
-
-  const handleOnFocus = () => {
-    setIsFocused(true);
-  };
-
   const [tuits, setTuits] = useState([]);
-  const [isFocused, setIsFocused] = useState(false);
   const [trendingTags, setTrendingTags] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
@@ -49,35 +36,34 @@ const Explore = () => {
 
   return (
     <div className="ttr-home">
-      <div className="row mb-3 position-relative">
-        <div className="input-group">
-          <input
-            className="form-control"
-            type="search"
-            defaultValue={inputValue}
-            onFocus={handleOnFocus}
-            onBlur={() => setIsFocused(false)}
-            placeholder="Search Twitter"
-            style={{ borderRadius: "25px", paddingLeft: "10%", height: "50px" }}
-          />
-          <i
-            className="fa fa-search position-absolute"
-            style={{
-              bottom: "15px",
-              left: "30px",
-              color: "lightgray",
-              zIndex: "100",
-              fontSize: "20px",
-            }}
-          ></i>
-        </div>
-        <div className="list-group" style={{ alignItems: "center" }}>
-          {isFocused &&
-            trendingTags.map((item) => (
-              <InputSearchResult key={item.id} item={item} />
+      <InputGroup className="mb-3">
+        <input
+          className="form-control"
+          aria-label="Text input with dropdown button"
+          // o={inputValue}
+          defaultValue={inputValue}
+          onChange={(e) => console.log(e.target.value)}
+        />
+
+        <DropdownButton
+          variant="outline-secondary"
+          title="Dropdown"
+          id="input-group-dropdown-1"
+        >
+          {trendingTags &&
+            trendingTags.map((tag) => (
+              <Dropdown.Item
+                key={tag.id}
+                onClick={(e) => {
+                  console.log(e.target.textContent);
+                  setInputValue(e.target.textContent);
+                }}
+              >
+                {tag.name}
+              </Dropdown.Item>
             ))}
-        </div>
-      </div>
+        </DropdownButton>
+      </InputGroup>
 
       <Tuits tuits={tuits} refreshTuits={findTuits} />
     </div>
