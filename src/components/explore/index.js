@@ -40,7 +40,6 @@ const Explore = () => {
         <input
           className="form-control"
           aria-label="Text input with dropdown button"
-          // o={inputValue}
           defaultValue={inputValue}
           onChange={(e) => console.log(e.target.value)}
         />
