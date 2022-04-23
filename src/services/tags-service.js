@@ -14,16 +14,3 @@ const api = axios.create({
 export const findTrendingTags = () => {
   return api.get(`${TAGS_API}/trending`).then((response) => response.data);
 };
-// api
-//   .get("https://jsonplaceholder.typicode.com/users")
-//   .then((response) => response.data);
-// .then((res) => console.log(res));
-
-// export const findAllUsersThatLikedTuit = (tid) =>
-//   api.get(`${TUITS_API}/${tid}/likes`).then((response) => response.data);
-
-// export const userLikesTuit = (uid, tid) => {
-//   return api
-//     .put(`${USERS_API}/${uid}/likes/${tid}`)
-//     .then((response) => response.data);
-// };
