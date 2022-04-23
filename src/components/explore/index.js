@@ -5,12 +5,7 @@ import * as service from "../../services/tuits-service";
 import * as tagsService from "../../services/tags-service";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  InputGroup,
-  Dropdown,
-  DropdownButton,
-  FormControl,
-} from "react-bootstrap";
+import { InputGroup, Dropdown, DropdownButton, Button } from "react-bootstrap";
 
 const Explore = () => {
   const { uid } = useParams();
@@ -31,6 +26,7 @@ const Explore = () => {
 
   useEffect(async () => {
     const currentTags = await tagsService.findTrendingTags();
+    console.log(currentTags);
     setTrendingTags(currentTags);
   }, []);
 
@@ -44,21 +40,23 @@ const Explore = () => {
           onChange={(e) => console.log(e.target.value)}
         />
 
+        <Button id="button-addon1">Search</Button>
+
         <DropdownButton
           variant="outline-secondary"
-          title="Dropdown"
+          title="Trendiing"
           id="input-group-dropdown-1"
         >
           {trendingTags &&
             trendingTags.map((tag) => (
               <Dropdown.Item
-                key={tag.id}
+                key={tag._id}
                 onClick={(e) => {
                   console.log(e.target.textContent);
                   setInputValue(e.target.textContent);
                 }}
               >
-                {tag.name}
+                {tag.tag}
               </Dropdown.Item>
             ))}
         </DropdownButton>
