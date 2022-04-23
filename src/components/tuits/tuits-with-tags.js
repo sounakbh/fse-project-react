@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
 import * as service from "../../services/tuits-service";
+import * as likesService from "../../services/likes-service";
+import * as dislikesService from "../../services/dislikes-service";
 import { useParams } from "react-router-dom";
-import Tuit from "./tuit";
+import Tuits from ".";
 
 const TuitsWithTagsScreen = () => {
-  //   const [tuit, setTuit] = useState({});
+  const [tuits, setTuits] = useState({});
   const { tagname } = useParams();
-  //   const findTuitById = () =>
-  //     service.findTuitById(tid).then((tuit) => setTuit(tuit));
-  //   useEffect(findTuitById, []);
+  const getAllTuitsWithTags = () =>
+    service.getAllTuitsWithTags(tagname).then((tuit) => setTuits(tuit));
+
+  useEffect(getAllTuitsWithTags, []);
   return (
     <div>
-      <h1>Tuits with tag: {tagname}</h1>
-      {/* <Tuit tuit={tuit} likeTuit={() => {}} /> */}
+      <Tuits tuits={tuits} refreshTuits={getAllTuitsWithTags} />
     </div>
   );
 };
