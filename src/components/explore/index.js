@@ -29,6 +29,14 @@ const Explore = () => {
     setTrendingTags(currentTags);
   }, []);
 
+  const findTuitsBasedOnTagSearch = () => {
+    if(inputValue && inputValue !== ""){
+      service.getAllTuitsWithTags(inputValue).then((tuits) => setTuits(tuits));
+    } else {
+      findTuits();
+    }
+  }
+
   return (
     <div className="ttr-home">
       <InputGroup className="mb-3">
@@ -36,10 +44,10 @@ const Explore = () => {
           className="form-control"
           aria-label="Text input with dropdown button"
           defaultValue={inputValue}
-          onChange={(e) => console.log(e.target.value)}
+          onChange={(e) => setInputValue(e.target.value)}
         />
 
-        <Button id="button-addon1">Search</Button>
+        <Button id="button-addon1" onClick={findTuitsBasedOnTagSearch}>Search</Button>
 
         <DropdownButton
           variant="outline-secondary"
