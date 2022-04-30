@@ -7,7 +7,7 @@ const WhoToFollowListItem = ({
   },
 }) => {
   return (
-    <li key={who.handle} className="list-group-item">
+    <li className="list-group-item">
       <div className="row" style={{ fontSize: "13px" }}>
         <div
           className="col-2"
