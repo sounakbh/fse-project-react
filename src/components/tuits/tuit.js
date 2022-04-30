@@ -34,7 +34,7 @@ const Tuit = ({ tuit, deleteTuit, likeTuit, dislikeTuit }) => {
     tags?.forEach((tag) => {
       tuit = tuit.replace(
         tag,
-        `<a href='/api/tags/${tag.slice(1)}'>${tag}</a>`
+        `<a href='#/tags/${tag.slice(1)}/tuits'>${tag}</a>`
       );
     });
     return tuit;

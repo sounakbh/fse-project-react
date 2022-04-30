@@ -26,7 +26,6 @@ const Explore = () => {
 
   useEffect(async () => {
     const currentTags = await tagsService.findTrendingTags();
-    console.log(currentTags);
     setTrendingTags(currentTags);
   }, []);
 

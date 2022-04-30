@@ -7,6 +7,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL
 
 const TUITS_API = `${BASE_URL}/api/tuits`;
 const USERS_API = `${BASE_URL}/api/users`;
+const TAGS_API = `${BASE_URL}/api/tags`;
 
 const api = axios.create({
   withCredentials: true,
@@ -35,3 +36,6 @@ export const updateTuit = (tid, tuit) =>
 
 export const deleteTuit = (tid) =>
   api.delete(`${TUITS_API}/${tid}`).then((response) => response.data);
+
+export const getAllTuitsWithTags = (tagName) =>
+  api.get(`${TUITS_API}/tags/${tagName}`).then((response) => response.data);
