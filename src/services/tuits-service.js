@@ -8,6 +8,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL
 const TUITS_API = `${BASE_URL}/api/tuits`;
 const USERS_API = `${BASE_URL}/api/users`;
 const TAGS_API = `${BASE_URL}/api/tags`;
+const TRENDING_API = `${BASE_URL}/api/trending`
 
 const api = axios.create({
   withCredentials: true,
@@ -21,6 +22,9 @@ export const findTuitById = (tid) =>
 
 export const findTuitByUser = (uid) =>
   api.get(`${USERS_API}/${uid}/tuits`).then((response) => response.data);
+
+export const findTrendingTuits = () =>
+    api.get(`${TRENDING_API}/tuits`).then((response) => response.data);
 
 export const createTuit = (uid, tuit) => {
   let splitted = tuit.tuit.match(/#[a-z]+/gi);

@@ -16,9 +16,13 @@ const Explore = () => {
   const userId = uid;
   const findTuits = () =>
     service.findAllTuits().then((tuits) => setTuits(tuits));
+
+  const findTrendingTuits = () =>
+      service.findTrendingTuits().then((tuits) => setTuits(tuits));
+
   useEffect(() => {
     let isMounted = true;
-    findTuits();
+    findTrendingTuits();
     return () => {
       isMounted = false;
     };
@@ -51,7 +55,7 @@ const Explore = () => {
 
         <DropdownButton
           variant="outline-secondary"
-          title="Trendiing"
+          title="Trending"
           id="input-group-dropdown-1"
         >
           {trendingTags &&
@@ -69,7 +73,7 @@ const Explore = () => {
         </DropdownButton>
       </InputGroup>
 
-      <Tuits tuits={tuits} refreshTuits={findTuits} />
+      <Tuits tuits={tuits} refreshTuits={findTrendingTuits} />
     </div>
   );
 };
