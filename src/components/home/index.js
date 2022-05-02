@@ -73,7 +73,7 @@ const Home = () => {
               style={{ float: "right" }}
               onClick={createTuit}
             >
-              Tweet
+              Tuit
             </button>
           </div>
           <br />
